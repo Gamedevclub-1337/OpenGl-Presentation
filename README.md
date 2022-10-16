@@ -18,7 +18,7 @@ When OpenGL API was developed, it gave the programmer the freedom to manipulate 
 
 # Tools used in this presentation to ease the process of learning:
 
-Creating a window context and handling events and determeining which OpenGL extension is used in the target platform can be a combursome task, and is not the main objective of this presentation, for that where going to use some libraries that handles these things for us.
+Creating a window context and handling events and determeining which OpenGL extension is used in the target platform can be a combursome task, and is not the main objective of this presentation, for that we are going to use some libraries that handles these things for us.
 
 -GLFW:
 
