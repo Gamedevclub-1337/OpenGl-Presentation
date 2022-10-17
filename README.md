@@ -59,6 +59,34 @@ GLFWwindow*	window;
 	glfwMakeContextCurrent(window);
 ```
 
+Then we fill in an array of coordinates of our vertecies and we generate a vertex array object and a vertex buffer object and bind them, next we put the data in the buffer using the size of the whole array so that the data is aligned correctly in memory.
+
+```c
+	// The vertecies
+	float	vertices[] = {
+		-0.5f, -0.5f,
+		0.5f, -0.5f,
+		0.0f, 0.5f
+	};
+	
+	
+	GLuint	VAO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+	
+	GLuint	VBO;
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	
+	// By default the vertex attributes are disabled, what we mean by vertex attributes is the input variables that're going to be used in the 
+	// shader  program , using glEnableVertexAttribArray with 0 means that we are enabling the first vertex where we going to start the drawing from
+	glEnableVertexAttribArray(0);
+	// Defining an array of generic vertex data, first parameter is index of the vertex , second is the size of the data, third is the type, fourth 
+	// is whether it's normilized or not we'll set it to false cause we don't need that for a triangle, fifth is the stride of the data meaning how
+	// the data is going to be aligned in memory, and last is the offset of the first component of array.
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*) 0);
+```
 
 
 # Installation:
