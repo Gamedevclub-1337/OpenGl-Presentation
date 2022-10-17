@@ -9,7 +9,7 @@ OpenGL is one of the graphics API that is aimed to let the programmer have a con
 
 # OpenGL pipeline:
 
-Pixels that are rendered on screen via OpenGl walks through a pipeline , the term pipeline simply means that the ouput of a stage is the output of the next one.
+Pixels that are rendered on screen via OpenGl walks through a pipeline , the term pipeline simply means that the ouput of a stage is the input of the next one.
 
 ![The-graphics-pipeline-in-OpenGL-consists-of-these-5-steps-in-the-new-generation-of-cards](https://user-images.githubusercontent.com/54768823/196056113-cb7d6c20-2863-4f1c-b4fe-0579905daeac.png)
 
