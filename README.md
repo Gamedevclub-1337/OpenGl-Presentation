@@ -29,6 +29,38 @@ Creating a window context and handling events and determeining which OpenGL exte
 
 # Our Triangle !! Step by Step !!:
 
+-First we need to iniatilize glfw to link our program to the functionalities of this library, then creating a window context where OpenGL is going to draw.
+
+```c
+GLFWwindow*	window;
+	
+	if (!glfwInit())          // Check that the initialization is succefull otherwise return an error
+	{
+		fprintf(stderr, "glfwInit() Failed\n");
+		return (1);
+	}
+  // Specifying some additional parameters about the window creation
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+  
+  // Creating a window an the buffer
+  window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, NULL, NULL);
+	
+	if (!window)
+	{
+		fprintf(stderr, "glfwCreateWindow() Failed\n");
+		return (1);
+	}
+	
+  // Tell OpenGl to render in this context
+	glfwMakeContextCurrent(window);
+```
+
+
+
 # Installation:
 
 Follow this instructions:
