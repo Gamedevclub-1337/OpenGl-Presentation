@@ -88,6 +88,95 @@ Then we fill in an array of coordinates of our vertecies and we generate a verte
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*) 0);
 ```
 
+The shader programs for vertex and fragement shader.
+
+Vertex Shader:
+```glsl
+	#version 330 core
+
+	// Here we specify the location of our vertex which we will input, which is enabled using glEnableVertexAttribArray(0) in our C code where we passed
+	// our vertex data the buffer for the shader program
+	layout(location = 0) in vec2 Position;
+
+	void	main()
+	{
+		// A special OpenGL variable which holds the position of vertecies.
+		gl_Position = vec4(Position, 0.0f, 1.0f);
+	}
+```
+Fragement Shader:
+```glsl
+	#version 330 core
+
+	// The color output that will rasterize between the coordinates of the vertecies
+	out	vec4	color;
+
+	void	main()
+	{
+		color = vec4(1.0f, 0.0f, 0.0f, 1.0f);
+	}
+```
+
+Compiling and linking the shader program in the C code :
+First we need to read our shader code and store it in a string from a file, then we create the vertex and fragement shader using glCreateShader(shadertype), after that we link both shaders to a shader program that we will use for rendering. The code is straightforward.
+
+```C
+	GLuint	demoCompileShader(const char* filepath, GLuint shaderType)
+	{
+		char*	shaderFileBuffer = demoReadFile(filepath);
+
+		if (!shaderFileBuffer)
+		{
+			return (0);
+		}
+
+		GLint	shaderId = glCreateShader(shaderType);
+		glShaderSource(shaderId, 1, (const GLchar * const *)&shaderFileBuffer, NULL);
+		glCompileShader(shaderId);
+
+		int	compilationStatus;
+		glGetShaderiv(shaderId, GL_COMPILE_STATUS, &compilationStatus);
+		if (compilationStatus != GL_TRUE)
+		{
+			int	logLength = 0;
+			char	errorMessage[2048];
+			glGetShaderInfoLog(shaderId, 2048, &logLength, errorMessage);
+
+			printf("file : %s\n", filepath);
+			printf("%s\n", errorMessage);
+			glDeleteShader(shaderId);
+			shaderId = 0;
+		}
+		free(shaderFileBuffer);
+		return (shaderId);
+	}
+
+	GLuint	demoCreateShaderProgram(const char *vertexShaderFilepath,
+								   const char *fragmentShaderFilepath)
+	{
+		GLuint	vs = demoCompileShader(vertexShaderFilepath, GL_VERTEX_SHADER);
+		if (vs == 0)
+			return (0);
+		GLuint	fs = demoCompileShader(fragmentShaderFilepath, GL_FRAGMENT_SHADER);
+		if (fs == 0)
+		{
+			glDeleteShader(vs);
+			return (0);
+		}
+
+		GLuint	program = glCreateProgram();
+
+		glAttachShader(program, vs);
+		glAttachShader(program, fs);
+
+		glLinkProgram(program);
+
+		glDeleteShader(vs);
+		glDeleteShader(fs);
+		return (program);
+	}
+```
+
 
 # Installation:
 
