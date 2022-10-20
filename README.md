@@ -13,7 +13,7 @@ Pixels that are rendered on screen via OpenGl walks through a pipeline , the ter
 
 ![The-graphics-pipeline-in-OpenGL-consists-of-these-5-steps-in-the-new-generation-of-cards](https://user-images.githubusercontent.com/54768823/196056113-cb7d6c20-2863-4f1c-b4fe-0579905daeac.png)
 
-When OpenGL API was developed, it gave the programmer the freedom to manipulate 3 stages of this pipeline, the 2 main stages that needs to be present in order to witness pixels rendered on screen are the Vertex Program and the Fragement Program, Vertex Program is responsible for defining where the coordinates of the vertices of a shape are, while the Fragement is responsible of drawing between those points, and third one which is not necessary is the Geometry Program that gives us the ability to manipulate the vertecies more freely.
+Opengl give the programmer the freedom to manipulate 3 stages of this pipeline, the 2 main stages that needs to be present in order to witness pixels rendered on screen are the Vertex Program and the Fragement Program, Vertex Program is responsible for defining where the coordinates of the vertices of a shape are, while the Fragement is responsible of drawing between those points, and third one which is not necessary is the Geometry Program that gives us the ability to manipulate the vertecies more freely.
 
 
 # Tools used in this presentation to ease the process of learning:
